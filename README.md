@@ -33,8 +33,8 @@ This starter template implements a Retrieval-Augmented Generation (RAG) chatbot 
 
 ### Steps:
 
-1. **Connect to the Atlas Cluster:**
-   Use `mongosh` to connect to your Atlas cluster. Refer to the official documentation for more details on connecting via `mongosh`.
+1. **Connect to the local Atlas Cluster:**
+   Use `mongosh` to connect to your local Atlas cluster via `mongosh`.
 
 2. **Switch to the Database:**
    Select the database that contains the collection you want to index:
