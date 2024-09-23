@@ -90,27 +90,6 @@ This command uses the `mongorestore` tool to unpack the downloaded archive (`sam
    );
    ```
 
-   Replace the placeholders with your specific values:
-   * **`<databaseName>`:** The name of your database.
-   * **`<collectionName>`:** The name of your collection.
-   * **`<fieldToIndex>`:** The field you want to index.
-   * **`<indexName>`:** The name of your index (optional, defaults to `vector_index`).
-   * **`<numberOfDimensions>`:** The number of vector dimensions.
-
-### Example:
-```javascript
-use sample_mflixdb;
-db.movies.createIndex(
-    { "plot_vector": "vector" },
-    {
-        name: "plot_vector_index",
-        dimensions: 128
-    }
-);
-```
-
-This example creates a vector search index on the `plot_vector` field of the `movies` collection in the `sample_mflix` database.
-
 - Once completed, head to the QnA section to start asking questions based on your trained data, and you should get the desired response.
 
   ![image](https://github.com/utsavMongoDB/MongoDB-RAG-NextJS/assets/114057324/c76c8c19-e18a-46b1-834a-9a6bda7fec99)
