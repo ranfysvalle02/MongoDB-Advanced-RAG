@@ -85,7 +85,7 @@ This command uses the `mongorestore` tool to unpack the downloaded archive (`sam
        { "plot_embedding": "vector" },
        {
            name: "vector_index",
-           dimensions: <numberOfDimensions>
+           dimensions: 1536
        }
    );
    ```
