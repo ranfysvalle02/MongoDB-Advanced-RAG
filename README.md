@@ -29,6 +29,53 @@ This starter template implements a Retrieval-Augmented Generation (RAG) chatbot 
    mongosh "mongodb://localhost/?directConnection=true"
    ```
 
+## Creating an Atlas Vector Search Index Programmatically with mongosh
+
+### Steps:
+
+1. **Connect to the Atlas Cluster:**
+   Use `mongosh` to connect to your Atlas cluster. Refer to the official documentation for more details on connecting via `mongosh`.
+
+2. **Switch to the Database:**
+   Select the database that contains the collection you want to index:
+
+   ```javascript
+   use <databaseName>
+   ```
+
+3. **Create the Index:**
+   Execute the following command:
+
+   ```javascript
+   db.<collectionName>.createIndex(
+       { "<fieldToIndex>": "vector" },
+       {
+           name: "<indexName>",
+           dimensions: <numberOfDimensions>
+       }
+   );
+   ```
+
+   Replace the placeholders with your specific values:
+   * **`<databaseName>`:** The name of your database.
+   * **`<collectionName>`:** The name of your collection.
+   * **`<fieldToIndex>`:** The field you want to index.
+   * **`<indexName>`:** The name of your index (optional, defaults to `vector_index`).
+   * **`<numberOfDimensions>`:** The number of vector dimensions.
+
+### Example:
+```javascript
+use sample_mflixdb;
+db.movies.createIndex(
+    { "plot_vector": "vector" },
+    {
+        name: "plot_vector_index",
+        dimensions: 128
+    }
+);
+```
+
+This example creates a vector search index on the `plot_vector` field of the `movies` collection in the `sample_mflix` database.
 
 - Once completed, head to the QnA section to start asking questions based on your trained data, and you should get the desired response.
 
