@@ -83,7 +83,7 @@ This command uses the `mongorestore` tool to unpack the downloaded archive (`sam
    ```javascript
 const index = {
 
-         name: "<indexName>",
+         name: "vector_index",
 
          type: "vectorSearch",
 
@@ -95,24 +95,13 @@ const index = {
 
                "type": "vector",
 
-               "numDimensions": <numberOfDimensions>,
+               "numDimensions": 1536,
 
-               "path": "<fieldToIndex>",
+               "path": "plot_embedding",
 
-               "similarity": "euclidean | cosine | dotProduct"
+               "similarity": "cosine"
 
-             },
-
-             {
-
-               "type": "filter",
-
-               "path": "<fieldToIndex>"
-
-             },
-
-             ...
-
+             }
            ]
 
          }
