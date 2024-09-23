@@ -23,12 +23,6 @@ This starter template implements a Retrieval-Augmented Generation (RAG) chatbot 
    ```
    This command runs the Docker image, exposing port 27017 on your host machine to connect to the database.
 
-3. **Connect to the Database:**
-   Use `mongosh` to connect to the database:
-   ```bash
-   mongosh "mongodb://localhost/?directConnection=true"
-   ```
-
 ## Using Sample Datasets with MongoDB
 
 This section describes how to download and explore a complete sample dataset for MongoDB on your local machine.
@@ -71,7 +65,10 @@ This command uses the `mongorestore` tool to unpack the downloaded archive (`sam
 ### Steps:
 
 1. **Connect to the local Atlas Cluster:**
-   Use `mongosh` to connect to your local Atlas cluster via `mongosh`.
+   Use `mongosh` to connect to the database:
+   ```bash
+   mongosh "mongodb://localhost/?directConnection=true"
+   ```
 
 2. **Switch to the Database:**
    Select the database that contains the collection you want to index:
