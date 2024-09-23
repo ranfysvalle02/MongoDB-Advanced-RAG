@@ -82,11 +82,17 @@ This command uses the `mongorestore` tool to unpack the downloaded archive (`sam
 
    ```javascript
    db.embedded_movies.createIndex(
-       { "plot_embedding": "vector" },
        {
-           name: "vector_index",
-           dimensions: 1536
-       }
+
+          "type": "vector",
+    
+          "path": "plot_embedding",
+    
+          "numDimensions": 1536,
+    
+          "similarity": "cosine"
+    
+        }
    );
    ```
 
