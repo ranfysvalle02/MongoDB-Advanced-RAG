@@ -3,71 +3,32 @@
 This starter template implements a Retrieval-Augmented Generation (RAG) chatbot using LangChain and MongoDB Atlas. RAG combines AI language generation with knowledge retrieval for more informative responses. LangChain simplifies building the chatbot logic, while MongoDB Atlas' Vector database capability provides a powerful platform for storing and searching the knowledge base that fuels the chatbot's responses.
 
 ## Setup 
-### Prerequisites
 
-Before you begin, make sure you have the following ready:
+### Step 1: Local Atlas Environment 
 
-- **MongoDB Atlas URI**: Setup your account if you don't already have one ([Create Account](https://www.mongodb.com/docs/guides/atlas/account/))
-    
-- **OpenAI API Key** (https://platform.openai.com/api-keys)
+1. **Pull the Docker Image:**
+   * **Latest Version:**
+     ```bash
+     docker pull mongodb/mongodb-atlas-local
+     ```
+   * **Specific Version:**
+     ```bash
+     docker pull mongodb/mongodb-atlas-local:<tag>
+     ```
+     Replace `<tag>` with the desired version.
 
+2. **Run the Database:**
+   ```bash
+   docker run -p 27017:27017 mongodb/mongodb-atlas-local
+   ```
+   This command runs the Docker image, exposing port 27017 on your host machine to connect to the database.
 
+3. **Connect to the Database:**
+   Use `mongosh` to connect to the database:
+   ```bash
+   mongosh "mongodb://localhost/?directConnection=true"
+   ```
 
-## Steps to Deploy 
-Follow the below-mentioned steps to deploy the app on Vercel.
-
-#### Step 1: Click below to navigate to the deployment page
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmongodb-partners%2FMongoDB-RAG-Vercel&env=OPENAI_API_KEY&demo-title=RAG%20with%20MongoDB%20Atlas%20and%20OpenAI&demo-url=https%3A%2F%2Fmonogodb-rag.vercel.app%2F&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
-
-#### Step 2: Add Environment Variables
-
-Populate the values of the ENV variables mentioned below
-
-````
-OPENAI_API_KEY = "<YOUR_OPENAI_KEY>"              # API Key copied from the OpenAI portal
-MONGODB_URI = "<YOUR_MONGODB_URI>"                # Connection URI to MongoDB Instance (This should be automatically created after MongoDB Atlas integration)
-````
-
-#### Step 3: Deploy
-Once you have updated the above values, go ahead and click deploy to deploy the app. Wait for the app to be deployed and start serving traffic.
-
-
-#### Step 4: Upload PDF files to create chunks
-Head to the `Train` tab and upload a PDF document. 
-
-If everything is deployed correctly, your document should start uploading to your cluster under the `chatter > training_data` collection.
-
-Your data should now start appearing as below in the collection.
-
-![image](https://github.com/utsavMongoDB/MongoDB-RAG-NextJS/assets/114057324/316af753-8f7b-492f-b51a-c23c109a3fac)
-
-
-
-#### Step 5: Create Vector Index on Atlas
-Now for the RAG (QnA) to work, you need to create a Vector Search Index on Atlas so the vector data can be fetched and served to LLMs.
-
-Create a search index as below.
-
-- Let’s head over to our MongoDB Atlas user interface to create our Vector Search Index. First, click on the “Search” tab and then on “Create Search Index.” You’ll be taken to this page (shown below). Please click on “JSON Editor.”
- ![image](https://github.com/utsavMongoDB/MongoDB-RAG-NextJS/assets/114057324/b41a09a8-9875-4e5d-9549-e62652389d33)
-
-- Next input the values as shown in the below image and create the Vector.
-    ```
-    {
-      "fields": [
-        {
-          "numDimensions": 1536,
-          "path": "text_embedding",
-          "similarity": "cosine",
-          "type": "vector"
-        }
-      ]
-    }
-    ```
-  ![image](https://github.com/utsavMongoDB/MongoDB-RAG-NextJS/assets/114057324/ea1c8fa9-d391-40e6-b838-7a49fdf6bbd7)
-
-- You should start seeing a vector index getting created. You should get an email once index creation is completed.
-  ![image](https://github.com/utsavMongoDB/MongoDB-RAG-NextJS/assets/114057324/c1842069-4080-4251-8269-08d9398e09aa)
 
 - Once completed, head to the QnA section to start asking questions based on your trained data, and you should get the desired response.
 
