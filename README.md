@@ -29,6 +29,43 @@ This starter template implements a Retrieval-Augmented Generation (RAG) chatbot 
    mongosh "mongodb://localhost/?directConnection=true"
    ```
 
+## Using Sample Datasets with MongoDB
+
+This section describes how to download and explore a complete sample dataset for MongoDB on your local machine.
+
+### Downloading the Dataset
+
+There is a complete sample dataset available for MongoDB. You can download it using either `wget` or `curl`:
+
+**Using wget:**
+
+```bash
+wget https://atlas-education.s3.amazonaws.com/sampledata.archive
+```
+
+**Using curl:**
+
+```bash
+curl https://atlas-education.s3.amazonaws.com/sampledata.archive -o sampledata.archive
+```
+
+**Note:**
+
+* Ensure you have `wget` or `curl` installed on your system.
+* The downloaded file will be named `sampledata.archive`.
+
+### Restoring the Dataset
+
+Before restoring the dataset, make sure you have a local instance of `mongod` running. You can either use an existing instance or start a new one. This instance will be used to host a local copy of the sample dataset.
+
+**To restore the dataset:**
+
+```bash
+mongorestore --archive=sampledata.archive
+```
+
+This command uses the `mongorestore` tool to unpack the downloaded archive (`sampledata.archive`) and populate your local `mongod` instance with the sample data.
+
 ## Creating an Atlas Vector Search Index Programmatically with mongosh
 
 ### Steps:
