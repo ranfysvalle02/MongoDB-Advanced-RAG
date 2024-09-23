@@ -97,6 +97,39 @@ db.embedded_movies.createSearchIndex(
 );
 ```
 
+3. **Check the Status of Index:**
+   Execute the following command:
+
+```
+db.embedded_movies.getSearchIndexes()
+```
+
+4. **Wait for Status Complete:**
+
+```
+[
+  {
+    id: '66f0c9c9ce6bb7512d7e8ba7',
+    name: 'vector_index',
+    type: 'vectorSearch',
+    status: 'READY',
+    queryable: true,
+    latestVersion: 0,
+    latestDefinition: {
+      fields: [
+        {
+          type: 'vector',
+          path: 'plot_embedding',
+          numDimensions: 1536,
+          similarity: 'cosine'
+        }
+      ]
+    }
+  }
+]
+```
+
+
 
 - Once completed, head to the QnA section to start asking questions based on your trained data, and you should get the desired response.
 
