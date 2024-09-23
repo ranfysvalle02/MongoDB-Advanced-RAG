@@ -81,37 +81,22 @@ This command uses the `mongorestore` tool to unpack the downloaded archive (`sam
    Execute the following command:
 
 ```
-const index = {
-
-         name: "vector_index",
-
-         type: "vectorSearch",
-
-         definition: {
-
-           "fields": [
-
-             {
-
-               "type": "vector",
-
-               "numDimensions": 1536,
-
-               "path": "plot_embedding",
-
-               "similarity": "cosine"
-
-             }
-           ]
-
-         }
-
-     }
+db.embedded_movies.createSearchIndex(
+  "vector_index",
+  "vectorSearch", //index type
+  {
+    fields: [
+      {
+        "type": "vector",
+        "numDimensions": 1536,
+        "path": "plot_embedding",
+        "similarity": "cosine"
+      }
+    ]
+  }
+);
 ```
 
-```
-    db.embedded_movies.createSearchIndex(index);
-```
 
 - Once completed, head to the QnA section to start asking questions based on your trained data, and you should get the desired response.
 
