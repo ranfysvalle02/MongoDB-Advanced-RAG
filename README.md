@@ -80,7 +80,7 @@ This command uses the `mongorestore` tool to unpack the downloaded archive (`sam
 3. **Create the Index:**
    Execute the following command:
 
-   ```javascript
+```
 const index = {
 
          name: "vector_index",
@@ -107,11 +107,11 @@ const index = {
          }
 
      }
-   ```
+```
 
-  ```javascript
+```
     db.embedded_movies.createSearchIndex(index);
-  ```
+```
 
 - Once completed, head to the QnA section to start asking questions based on your trained data, and you should get the desired response.
 
