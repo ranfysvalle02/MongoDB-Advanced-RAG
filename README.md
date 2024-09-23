@@ -77,17 +77,17 @@ This command uses the `mongorestore` tool to unpack the downloaded archive (`sam
    Select the database that contains the collection you want to index:
 
    ```javascript
-   use <databaseName>
+   use sample_mflix
    ```
 
 3. **Create the Index:**
    Execute the following command:
 
    ```javascript
-   db.<collectionName>.createIndex(
-       { "<fieldToIndex>": "vector" },
+   db.embedded_movies.createIndex(
+       { "plot_embedding": "vector" },
        {
-           name: "<indexName>",
+           name: "vector_index",
            dimensions: <numberOfDimensions>
        }
    );
